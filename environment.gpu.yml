@@ -1,0 +1,16 @@
+name: plr
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch>=2.3
+  - torchvision
+  - pytorch-cuda=12.1
+  - numpy
+  - matplotlib
+  - pyyaml
+  - tqdm
+  - pytest
