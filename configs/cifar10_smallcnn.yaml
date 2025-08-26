@@ -1,0 +1,16 @@
+dataset: cifar10
+model:
+  name: smallcnn
+train:
+  epochs: 120
+  batch_size: 128
+  lr: 1e-3
+  weight_decay: 5e-4
+  seed: 0        # surchargé en CLI
+  num_workers: 0 # Windows safe
+  use_cuda: true
+plr:
+  enabled: false
+log:
+  out_dir: runs/c10_smallcnn_ce
+  save_every: 10

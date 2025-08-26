@@ -38,6 +38,17 @@ def get_loaders(name: str = "mnist",
         test = datasets.CIFAR10(data_dir, train=False, download=True, transform=tfm_test)
         in_shape = (3, 32, 32)
         num_classes = 10
+    elif name == "cifar100":
+        tfm_train = transforms.Compose([
+            transforms.RandomCrop(32, padding=4),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+        ])
+        tfm_test = transforms.Compose([transforms.ToTensor()])
+        full_train = datasets.CIFAR100(data_dir, train=True, download=True, transform=tfm_train)
+        test = datasets.CIFAR100(data_dir, train=False, download=True, transform=tfm_test)
+        in_shape = (3, 32, 32)
+        num_classes = 100
     else:
         raise ValueError(f"Unknown dataset: {name}")
 

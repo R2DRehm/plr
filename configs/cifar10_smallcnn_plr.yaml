@@ -1,0 +1,23 @@
+dataset: cifar10
+model:
+  name: smallcnn
+train:
+  epochs: 120
+  batch_size: 128
+  lr: 1e-3
+  weight_decay: 5e-4
+  seed: 0
+  num_workers: 0
+  use_cuda: true
+plr:
+  enabled: true
+  variant: pairs        # pairs | jv
+  lambda: 0.6           # λ
+  tau: 0.30             # τ
+  k: 2                  # k-NN intra-batch
+  temp: 12.0            # srange_t
+  use_penultimate: true # k-NN sur φ(x) détaché
+  warmup_epochs: 5
+log:
+  out_dir: runs/c10_smallcnn_plr
+  save_every: 10

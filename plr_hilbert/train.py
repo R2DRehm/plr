@@ -97,7 +97,7 @@ def main(
     batch_size: int = 128,
     lr: float = 1e-3,
     weight_decay: float = 1e-4,
-    plr_lambda: float = 0.7,
+    plr_lambda: float = 0.0,
     plr_tau: float = 0.30,
     plr_k: int = 2,
     plr_space: str = "input",  # or "feature"
@@ -121,10 +121,29 @@ def main(
         run_dir = os.path.join("runs", tag)
     ensure_dir(run_dir)
 
-    cfg = dict(dataset=dataset, model_name=model_name, epochs=epochs, batch_size=batch_size,
-               lr=lr, weight_decay=weight_decay, plr_lambda=plr_lambda, plr_tau=plr_tau, plr_k=plr_k,
-               plr_space=plr_space, val_split=val_split, data_dir=data_dir, run_dir=run_dir,
-               seed=seed, use_cuda=bool(device.type=='cuda'), num_workers=num_workers)
+    cfg = dict(
+        dataset=dataset,
+        model_name=model_name,
+        epochs=epochs,
+        batch_size=batch_size,
+        lr=lr,
+        weight_decay=weight_decay,
+        # PLR: paramètres bruts
+        plr_lambda=plr_lambda,
+        plr_tau=plr_tau,
+        plr_k=plr_k,
+        plr_space=plr_space,  # "input" ou "feature"
+        # PLR: champ dérivé (utile pour l'agrégateur)
+        plr_enabled=bool(plr_lambda > 0.0),
+
+        val_split=val_split,
+        data_dir=data_dir,
+        run_dir=run_dir,
+        seed=seed,
+        use_cuda=bool(device.type == 'cuda'),
+        num_workers=num_workers,
+    )
+
     save_config(run_dir, cfg)
 
     best_nll = float("inf")
@@ -157,7 +176,7 @@ if __name__ == "__main__":
     p.add_argument("--batch_size", type=int, default=128)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--weight_decay", type=float, default=1e-4)
-    p.add_argument("--plr_lambda", type=float, default=0.7)
+    p.add_argument("--plr_lambda", type=float, default=0.0)
     p.add_argument("--plr_tau", type=float, default=0.30)
     p.add_argument("--plr_k", type=int, default=2)
     p.add_argument("--plr_space", type=str, default="input", choices=["input","feature"])

@@ -1,0 +1,25 @@
+dataset: mnist
+model:
+  name: mlp
+  hidden_dim: 256
+train:
+  epochs: 3
+  batch_size: 128
+  lr: 1e-3
+  weight_decay: 1e-4
+  seed: 42
+plr:
+  enabled: true
+  variant: pairs
+  lambda: 0.6
+  tau: 0.30
+  k: 2
+  temp: 12.0
+  use_penultimate: true
+  warmup_epochs: 1
+  jv:
+    R: 3
+    delta: 1e-3
+log:
+  out_dir: runs/mnist_mlp_plr
+  save_every: 1

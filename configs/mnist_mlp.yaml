@@ -1,0 +1,15 @@
+dataset: mnist
+model:
+  name: mlp
+  hidden_dim: 256
+train:
+  epochs: 3          # démarre court pour tester
+  batch_size: 128
+  lr: 1e-3
+  weight_decay: 1e-4
+  seed: 42
+plr:
+  enabled: false     # baseline sans PLR
+log:
+  out_dir: runs/mnist_mlp
+  save_every: 1
