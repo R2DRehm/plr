@@ -6,22 +6,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # --- Quels runs lire ? (ajoute facilement d'autres motifs si besoin)
+# --- Quels runs lire ? (ajoute facilement d'autres motifs si besoin)
 PATTERNS = [
     # CIFAR-10
-    "c10_smallcnn_ce_s*_full",
-    "c10_smallcnn_plr_t0p35_s*_full",
-    "c10_smallcnn_plr_l0p4_s*_full",
-    "c10_smallcnn_plr_s*_full",         # (λ=0.6, τ=0.30) ablation
+    "c10_smallcnn_ce_s*_full*",
+    "c10_smallcnn_plr_t0p35_s*_full*",
+    "c10_smallcnn_plr_l0p4_s*_full*",
+    "c10_smallcnn_plr_s*_full*",
 
     # CIFAR-100
-    "c100_smallcnn_ce_s*_full",
-    "c100_smallcnn_plr_t0p35_s*_full",
+    "c100_smallcnn_ce_s*_full*",
+    "c100_smallcnn_plr_t0p35_s*_full*",
 ]
+
+
 
 RUNS = []
 for pat in PATTERNS:
     RUNS += [p for p in Path("runs").glob(pat) if p.is_dir()]
 RUNS = sorted(RUNS)
+
 
 def read_cfg(run: Path) -> dict:
     cfg = {}
@@ -54,14 +58,13 @@ def tag_method_from_cfg(cfg: dict) -> str:
 
 def parse_or_eval(run: Path):
     # 1) Essaie quelques fichiers d'évaluation courants
-    for name in ["eval.csv", "eval.json", "metrics_eval.csv", "eval_metrics.csv", "metrics.csv"]:
+    for name in ["metrics_eval.json", "eval.json", "eval.csv", "metrics_eval.csv", "eval_metrics.csv", "metrics.csv"]:
         f = run / name
         if not f.exists():
             continue
         try:
             if f.suffix == ".csv":
                 df = pd.read_csv(f)
-                # si le CSV contient plusieurs lignes, on prend la dernière
                 row = df.iloc[-1].to_dict()
             else:
                 with open(f, "r", encoding="utf-8") as jf:
@@ -70,13 +73,13 @@ def parse_or_eval(run: Path):
                 return {k: float(row[k]) for k in ["acc","nll","ece","brier"]}
         except Exception:
             pass
-
     # 2) Sinon, appelle l'éval (stdout JSON en fin)
     out = subprocess.check_output([sys.executable, "-m", "plr_hilbert.eval", "--run", str(run)], text=True)
     def grab(k):
         m = re.search(rf'"{k}"\s*:\s*([0-9.]+)', out)
         return float(m.group(1)) if m else None
     return {"acc":grab("acc"), "nll":grab("nll"), "ece":grab("ece"), "brier":grab("brier")}
+
 
 def method_from_config(run_dir: Path, cfg: dict) -> str:
     lam = float(cfg.get("plr_lambda", 0.0))
@@ -153,6 +156,8 @@ def tcrit(n):
     table = {3:4.303,4:3.182,5:2.776,6:2.571,7:2.447,8:2.365,9:2.306,10:2.262,
              11:2.228,12:2.201,13:2.179,14:2.160,15:2.145,16:2.131,17:2.120,18:2.110,19:2.101,20:2.093}
     return table.get(n, 1.96)
+
+df = df[(df["acc"] > 0.05) & (df["nll"] < 4.0)].copy()
 
 g = df.groupby(["dataset","method"])[metric_cols].agg(["mean","std","count"])
 
