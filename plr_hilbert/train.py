@@ -28,42 +28,91 @@ def accuracy_from_logits(logits: torch.Tensor, targets: torch.Tensor) -> float:
     return float((logits.argmax(dim=1) == targets).float().mean().item())
 
 def train_one_epoch(model, loader, optimizer, device, plr_cfg: Dict, space: str):
+    """
+    Entraîne un epoch.
+    - space == "feature": distances dans l'espace des features penultièmes (recommandé pour CIFAR).
+      Par défaut, on calcule ces features sans dropout (plus stable) puis on les L2-normalise.
+      (Désactive via plr_cfg["use_nodrop_features"]=False si BatchNorm te pose problème.)
+    - space == "input": distances dans l'espace d'entrée (on z-score par échantillon).
+
+    plr_cfg attend (tous optionnels) :
+      - "lambda": float (force PLR)
+      - "tau": float (seuil)
+      - "k": int (nb voisins)
+      - "use_nodrop_features": bool (def=True)
+      - "normalize_input": bool (def=True, z-score par échantillon)
+    """
     model.train()
     ce = nn.CrossEntropyLoss()
+
+    lam = float(plr_cfg.get("lambda", 0.0))
+    tau = float(plr_cfg.get("tau", 0.30))
+    k   = int(plr_cfg.get("k", 2))
+    use_nodrop_features = bool(plr_cfg.get("use_nodrop_features", True))
+    normalize_input     = bool(plr_cfg.get("normalize_input", True))
+
     tot_ce, tot_plr, tot_acc, n_batches = 0.0, 0.0, 0.0, 0
+
     for x, y in loader:
         x, y = x.to(device), y.to(device)
         optimizer.zero_grad(set_to_none=True)
+
+        # 1) Logits (forward "train" normal, pour la CE)
         if space == "feature":
-            logits, feat = model(x, return_features=True)
-            feat_nodrop = feat_before_dropout if dispo, sinon feat
-            Xspace = F.normalize(feat_nodrop.detach(), dim=1)
+            logits, feat_train = model(x, return_features=True)
+
+            # 2) Espace de distance: features stables (sans dropout) + L2-norm
+            if use_nodrop_features:
+                was_training = model.training
+                model.eval()
+                with torch.no_grad():
+                    _, feat_nodrop = model(x, return_features=True)
+                if was_training:
+                    model.train()
+                Xspace = F.normalize(feat_nodrop, dim=1)
+            else:
+                # Utilise les features du forward train (inclut dropout) mais détachées
+                Xspace = F.normalize(feat_train.detach(), dim=1)
+
         else:
+            # Distances calculées dans l'espace entrée (aplaties)
             logits = model(x)
-            Xspace = x.view(x.size(0), -1).detach()  # distances on input (no grad)
+            flat = x.view(x.size(0), -1)
+            if normalize_input:
+                mu = flat.mean(dim=1, keepdim=True)
+                sigma = flat.std(dim=1, keepdim=True).clamp_min(1e-6)
+                flat = (flat - mu) / sigma
+            Xspace = flat.detach()
+
+        # 3) CE + PLR (optionnelle)
         loss_ce = ce(logits, y)
         loss = loss_ce
-        plr_info = {"mean_ratio": 0.0, "active_frac": 0.0}
-        if plr_cfg["lambda"] > 0:
+        if lam > 0.0:
             l_plr, plr_info = plr_loss(
-                logits,
-                Xspace,
-                k=plr_cfg["k"],
-                tau=plr_cfg["tau"],
+                logits=logits,
+                X_space=Xspace,
+                k=k,
+                tau=tau,
                 reduction="mean",
             )
-            loss = loss + plr_cfg["lambda"] * l_plr
+            loss = loss + lam * l_plr
             tot_plr += float(l_plr.item())
+
+        # 4) Backprop + step
         loss.backward()
         optimizer.step()
-        tot_ce += float(loss_ce.item())
+
+        # 5) Logs
+        tot_ce  += float(loss_ce.item())
         tot_acc += accuracy_from_logits(logits, y)
         n_batches += 1
+
     return {
-        "train_ce": tot_ce / max(1, n_batches),
+        "train_ce":  tot_ce  / max(1, n_batches),
         "train_plr": tot_plr / max(1, n_batches),
         "train_acc": tot_acc / max(1, n_batches),
     }
+
 
 @torch.no_grad()
 def evaluate(model, loader, device):
