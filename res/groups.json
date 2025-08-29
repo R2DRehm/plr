@@ -1,0 +1,747 @@
+{
+  "cifar100::c100_smallcnn_ce_s*_full_v3": {
+    "dataset": "cifar100",
+    "group_name": "c100_smallcnn_ce_s*_full_v3",
+    "runs": [
+      {
+        "dir": "runs\\c100_smallcnn_ce_s0_full_v3",
+        "name": "c100_smallcnn_ce_s0_full_v3",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.4991,
+          "nll": 1.8423613732374167,
+          "ece": 0.02666790969669819,
+          "brier": 0.6327974796295166
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s1_full_v3",
+        "name": "c100_smallcnn_ce_s1_full_v3",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.4665,
+          "nll": 1.9823127230511437,
+          "ece": 0.015550991520285606,
+          "brier": 0.6694550514221191
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s2_full_v3",
+        "name": "c100_smallcnn_ce_s2_full_v3",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.01,
+          "nll": 4.605482626564895,
+          "ece": 0.0005389899015426636,
+          "brier": 0.990006148815155
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s3_full_v3",
+        "name": "c100_smallcnn_ce_s3_full_v3",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.01,
+          "nll": 4.60568024840536,
+          "ece": 0.0004920912906527519,
+          "brier": 0.9900076985359192
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s4_full_v3",
+        "name": "c100_smallcnn_ce_s4_full_v3",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.4907,
+          "nll": 1.8903944688507273,
+          "ece": 0.014685777947306633,
+          "brier": 0.6467792987823486
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s5_full_v3",
+        "name": "c100_smallcnn_ce_s5_full_v3",
+        "seed": 5,
+        "metrics": {
+          "acc": 0.5209,
+          "nll": 1.7685357634025285,
+          "ece": 0.029538463801145554,
+          "brier": 0.6155228018760681
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s6_full_v3",
+        "name": "c100_smallcnn_ce_s6_full_v3",
+        "seed": 6,
+        "metrics": {
+          "acc": 0.4684,
+          "nll": 1.9818003238001956,
+          "ece": 0.029713690280914307,
+          "brier": 0.6668220162391663
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s7_full_v3",
+        "name": "c100_smallcnn_ce_s7_full_v3",
+        "seed": 7,
+        "metrics": {
+          "acc": 0.01,
+          "nll": 4.605525089215629,
+          "ece": 0.0005747741088271141,
+          "brier": 0.9900063276290894
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s8_full_v3",
+        "name": "c100_smallcnn_ce_s8_full_v3",
+        "seed": 8,
+        "metrics": {
+          "acc": 0.5057,
+          "nll": 1.83469541314282,
+          "ece": 0.03137771785259247,
+          "brier": 0.6322081685066223
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_ce_s9_full_v3",
+        "name": "c100_smallcnn_ce_s9_full_v3",
+        "seed": 9,
+        "metrics": {
+          "acc": 0.4953,
+          "nll": 1.8743928142740756,
+          "ece": 0.01262030191719532,
+          "brier": 0.6396495699882507
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "cnn_small",
+      "plr_enabled": false,
+      "plr_lambda": 0.0,
+      "plr_tau": 0.3,
+      "plr_k": 2,
+      "plr_space": "input",
+      "epochs": 160,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0005,
+      "val_split": 0.1,
+      "data_dir": ".\\data"
+    }
+  },
+  "cifar100::c100_smallcnn_plr_t0p35_s*_full": {
+    "dataset": "cifar100",
+    "group_name": "c100_smallcnn_plr_t0p35_s*_full",
+    "runs": [
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s0_full",
+        "name": "c100_smallcnn_plr_t0p35_s0_full",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.4839,
+          "nll": 1.9342820342582991,
+          "ece": 0.037423934787511826,
+          "brier": 0.6567316651344299
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s1_full",
+        "name": "c100_smallcnn_plr_t0p35_s1_full",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.4471,
+          "nll": 2.0717564157292814,
+          "ece": 0.025408534333109856,
+          "brier": 0.6903036236763
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s2_full",
+        "name": "c100_smallcnn_plr_t0p35_s2_full",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.3296,
+          "nll": 2.5988016249258306,
+          "ece": 0.021565407514572144,
+          "brier": 0.7967556118965149
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s3_full",
+        "name": "c100_smallcnn_plr_t0p35_s3_full",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.01,
+          "nll": 4.60568024840536,
+          "ece": 0.0004920912906527519,
+          "brier": 0.9900076985359192
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s4_full",
+        "name": "c100_smallcnn_plr_t0p35_s4_full",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.4594,
+          "nll": 2.015274748017516,
+          "ece": 0.014266273006796837,
+          "brier": 0.674576997756958
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s5_full",
+        "name": "c100_smallcnn_plr_t0p35_s5_full",
+        "seed": 5,
+        "metrics": {
+          "acc": 0.4967,
+          "nll": 1.85727582551256,
+          "ece": 0.011440841481089592,
+          "brier": 0.6372279524803162
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s6_full",
+        "name": "c100_smallcnn_plr_t0p35_s6_full",
+        "seed": 6,
+        "metrics": {
+          "acc": 0.4559,
+          "nll": 2.051877697811851,
+          "ece": 0.01339318323880434,
+          "brier": 0.682378888130188
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s7_full",
+        "name": "c100_smallcnn_plr_t0p35_s7_full",
+        "seed": 7,
+        "metrics": {
+          "acc": 0.01,
+          "nll": 4.605525089215629,
+          "ece": 0.0005747741088271141,
+          "brier": 0.9900063276290894
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s8_full",
+        "name": "c100_smallcnn_plr_t0p35_s8_full",
+        "seed": 8,
+        "metrics": {
+          "acc": 0.4751,
+          "nll": 1.962084718897373,
+          "ece": 0.02994268573820591,
+          "brier": 0.6630347371101379
+        }
+      },
+      {
+        "dir": "runs\\c100_smallcnn_plr_t0p35_s9_full",
+        "name": "c100_smallcnn_plr_t0p35_s9_full",
+        "seed": 9,
+        "metrics": {
+          "acc": 0.4723,
+          "nll": 1.9891947160793255,
+          "ece": 0.027808642014861107,
+          "brier": 0.6688986420631409
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "cnn_small",
+      "plr_enabled": null,
+      "plr_lambda": 0.6,
+      "plr_tau": 0.35,
+      "plr_k": 2,
+      "plr_space": "feature",
+      "epochs": 160,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0005,
+      "val_split": 0.1,
+      "data_dir": ".\\data"
+    }
+  },
+  "cifar10::c10_smallcnn_ce_s*_full_v3": {
+    "dataset": "cifar10",
+    "group_name": "c10_smallcnn_ce_s*_full_v3",
+    "runs": [
+      {
+        "dir": "runs\\c10_smallcnn_ce_s0_full_v3",
+        "name": "c10_smallcnn_ce_s0_full_v3",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.8405,
+          "nll": 0.47522506306443035,
+          "ece": 0.019214926287531853,
+          "brier": 0.23189608752727509
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s1_full_v3",
+        "name": "c10_smallcnn_ce_s1_full_v3",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.8336,
+          "nll": 0.49898252079758465,
+          "ece": 0.02495444193482399,
+          "brier": 0.24073727428913116
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s2_full_v3",
+        "name": "c10_smallcnn_ce_s2_full_v3",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.8263,
+          "nll": 0.5059566373312021,
+          "ece": 0.015117328613996506,
+          "brier": 0.2476234883069992
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s3_full_v3",
+        "name": "c10_smallcnn_ce_s3_full_v3",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.8295,
+          "nll": 0.5003286124784735,
+          "ece": 0.01334872655570507,
+          "brier": 0.2443642020225525
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s4_full_v3",
+        "name": "c10_smallcnn_ce_s4_full_v3",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.822,
+          "nll": 0.5152294432060628,
+          "ece": 0.033172037452459335,
+          "brier": 0.2521819770336151
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s5_full_v3",
+        "name": "c10_smallcnn_ce_s5_full_v3",
+        "seed": 5,
+        "metrics": {
+          "acc": 0.8309,
+          "nll": 0.4891753928570808,
+          "ece": 0.00751231424510479,
+          "brier": 0.23985090851783752
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s6_full_v3",
+        "name": "c10_smallcnn_ce_s6_full_v3",
+        "seed": 6,
+        "metrics": {
+          "acc": 0.8224,
+          "nll": 0.509111749220498,
+          "ece": 0.01837998256087303,
+          "brier": 0.2517487406730652
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s7_full_v3",
+        "name": "c10_smallcnn_ce_s7_full_v3",
+        "seed": 7,
+        "metrics": {
+          "acc": 0.8275,
+          "nll": 0.503876532934889,
+          "ece": 0.013740304857492447,
+          "brier": 0.24635356664657593
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s8_full_v3",
+        "name": "c10_smallcnn_ce_s8_full_v3",
+        "seed": 8,
+        "metrics": {
+          "acc": 0.8366,
+          "nll": 0.4773110966139202,
+          "ece": 0.019179288297891617,
+          "brier": 0.23240327835083008
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_ce_s9_full_v3",
+        "name": "c10_smallcnn_ce_s9_full_v3",
+        "seed": 9,
+        "metrics": {
+          "acc": 0.8369,
+          "nll": 0.4780347871629498,
+          "ece": 0.024785621091723442,
+          "brier": 0.23391447961330414
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "cnn_small",
+      "plr_enabled": false,
+      "plr_lambda": 0.0,
+      "plr_tau": 0.3,
+      "plr_k": 2,
+      "plr_space": "input",
+      "epochs": 120,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0005,
+      "val_split": 0.1,
+      "data_dir": ".\\data"
+    }
+  },
+  "cifar10::c10_smallcnn_plr_t0p35_s*_full": {
+    "dataset": "cifar10",
+    "group_name": "c10_smallcnn_plr_t0p35_s*_full",
+    "runs": [
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s0_full",
+        "name": "c10_smallcnn_plr_t0p35_s0_full",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.8187,
+          "nll": 0.5290713280062133,
+          "ece": 0.009344060905277729,
+          "brier": 0.2576923966407776
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s1_full",
+        "name": "c10_smallcnn_plr_t0p35_s1_full",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.8109,
+          "nll": 0.5412706163110612,
+          "ece": 0.013500066474080086,
+          "brier": 0.26406118273735046
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s2_full",
+        "name": "c10_smallcnn_plr_t0p35_s2_full",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.8082,
+          "nll": 0.5589160704160039,
+          "ece": 0.009444762021303177,
+          "brier": 0.27336132526397705
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s3_full",
+        "name": "c10_smallcnn_plr_t0p35_s3_full",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.8079,
+          "nll": 0.5563274384299411,
+          "ece": 0.009325194172561169,
+          "brier": 0.2704409658908844
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s4_full",
+        "name": "c10_smallcnn_plr_t0p35_s4_full",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.8151,
+          "nll": 0.5470150860050057,
+          "ece": 0.019540734589099884,
+          "brier": 0.26551419496536255
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s5_full",
+        "name": "c10_smallcnn_plr_t0p35_s5_full",
+        "seed": 5,
+        "metrics": {
+          "acc": 0.8073,
+          "nll": 0.5550794575033309,
+          "ece": 0.021731160581111908,
+          "brier": 0.27191653847694397
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s6_full",
+        "name": "c10_smallcnn_plr_t0p35_s6_full",
+        "seed": 6,
+        "metrics": {
+          "acc": 0.8054,
+          "nll": 0.5655697723732719,
+          "ece": 0.006309603340923786,
+          "brier": 0.2740381956100464
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s7_full",
+        "name": "c10_smallcnn_plr_t0p35_s7_full",
+        "seed": 7,
+        "metrics": {
+          "acc": 0.8038,
+          "nll": 0.558929862855356,
+          "ece": 0.011685413308441639,
+          "brier": 0.27395936846733093
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s8_full",
+        "name": "c10_smallcnn_plr_t0p35_s8_full",
+        "seed": 8,
+        "metrics": {
+          "acc": 0.8186,
+          "nll": 0.5284628181517879,
+          "ece": 0.008154795505106449,
+          "brier": 0.2554354667663574
+        }
+      },
+      {
+        "dir": "runs\\c10_smallcnn_plr_t0p35_s9_full",
+        "name": "c10_smallcnn_plr_t0p35_s9_full",
+        "seed": 9,
+        "metrics": {
+          "acc": 0.8174,
+          "nll": 0.5331272871433934,
+          "ece": 0.013086024671792984,
+          "brier": 0.26022931933403015
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "cnn_small",
+      "plr_enabled": null,
+      "plr_lambda": 0.6,
+      "plr_tau": 0.35,
+      "plr_k": 2,
+      "plr_space": "feature",
+      "epochs": 120,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0005,
+      "val_split": 0.1,
+      "data_dir": ".\\data"
+    }
+  },
+  "mnist::mnist_mlp_ce_s*_clean": {
+    "dataset": "mnist",
+    "group_name": "mnist_mlp_ce_s*_clean",
+    "runs": [
+      {
+        "dir": "runs\\mnist_mlp_ce_s0_clean",
+        "name": "mnist_mlp_ce_s0_clean",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.9784,
+          "nll": 0.06914299915845305,
+          "ece": 0.0035067531280219555,
+          "brier": 0.033561188727617264
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_ce_s1_clean",
+        "name": "mnist_mlp_ce_s1_clean",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.9791,
+          "nll": 0.06646794541274739,
+          "ece": 0.0022612405009567738,
+          "brier": 0.03206269443035126
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_ce_s2_clean",
+        "name": "mnist_mlp_ce_s2_clean",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.9768,
+          "nll": 0.07626224876067578,
+          "ece": 0.004669461399316788,
+          "brier": 0.03598710894584656
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_ce_s3_clean",
+        "name": "mnist_mlp_ce_s3_clean",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.9782,
+          "nll": 0.06845289786033851,
+          "ece": 0.0031610806472599506,
+          "brier": 0.03297143429517746
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_ce_s4_clean",
+        "name": "mnist_mlp_ce_s4_clean",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.9782,
+          "nll": 0.07191463181663517,
+          "ece": 0.0030281569343060255,
+          "brier": 0.034814272075891495
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "mlp",
+      "plr_enabled": false,
+      "plr_lambda": 0.0,
+      "plr_tau": 0.3,
+      "plr_k": 2,
+      "plr_space": "input",
+      "epochs": 5,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "val_split": 0.1,
+      "data_dir": "./data"
+    }
+  },
+  "mnist::mnist_mlp_plr_l0p6_s*_clean": {
+    "dataset": "mnist",
+    "group_name": "mnist_mlp_plr_l0p6_s*_clean",
+    "runs": [
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p6_s0_clean",
+        "name": "mnist_mlp_plr_l0p6_s0_clean",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.9801,
+          "nll": 0.12629309857759294,
+          "ece": 0.06897953897714615,
+          "brier": 0.04010869562625885
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p6_s1_clean",
+        "name": "mnist_mlp_plr_l0p6_s1_clean",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.9783,
+          "nll": 0.11215693779478345,
+          "ece": 0.048965662717819214,
+          "brier": 0.03854252025485039
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p6_s2_clean",
+        "name": "mnist_mlp_plr_l0p6_s2_clean",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.9764,
+          "nll": 0.12311438089118729,
+          "ece": 0.05646655708551407,
+          "brier": 0.04214177280664444
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p6_s3_clean",
+        "name": "mnist_mlp_plr_l0p6_s3_clean",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.9779,
+          "nll": 0.1240506432243163,
+          "ece": 0.05970650911331177,
+          "brier": 0.0416301004588604
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p6_s4_clean",
+        "name": "mnist_mlp_plr_l0p6_s4_clean",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.9784,
+          "nll": 0.12895898511515388,
+          "ece": 0.06819534301757812,
+          "brier": 0.041329991072416306
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "mlp",
+      "plr_enabled": true,
+      "plr_lambda": 0.6,
+      "plr_tau": 0.3,
+      "plr_k": 2,
+      "plr_space": "input",
+      "epochs": 5,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "val_split": 0.1,
+      "data_dir": "./data"
+    }
+  },
+  "mnist::mnist_mlp_plr_l0p7_s*_clean": {
+    "dataset": "mnist",
+    "group_name": "mnist_mlp_plr_l0p7_s*_clean",
+    "runs": [
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p7_s0_clean",
+        "name": "mnist_mlp_plr_l0p7_s0_clean",
+        "seed": 0,
+        "metrics": {
+          "acc": 0.9799,
+          "nll": 0.1377813813712778,
+          "ece": 0.07797841727733612,
+          "brier": 0.043190158903598785
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p7_s1_clean",
+        "name": "mnist_mlp_plr_l0p7_s1_clean",
+        "seed": 1,
+        "metrics": {
+          "acc": 0.9787,
+          "nll": 0.1206838032112846,
+          "ece": 0.05920162796974182,
+          "brier": 0.03983251750469208
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p7_s2_clean",
+        "name": "mnist_mlp_plr_l0p7_s2_clean",
+        "seed": 2,
+        "metrics": {
+          "acc": 0.9767,
+          "nll": 0.13509236483634274,
+          "ece": 0.0678766518831253,
+          "brier": 0.044716328382492065
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p7_s3_clean",
+        "name": "mnist_mlp_plr_l0p7_s3_clean",
+        "seed": 3,
+        "metrics": {
+          "acc": 0.9775,
+          "nll": 0.13208177907368804,
+          "ece": 0.06602184474468231,
+          "brier": 0.04364083707332611
+        }
+      },
+      {
+        "dir": "runs\\mnist_mlp_plr_l0p7_s4_clean",
+        "name": "mnist_mlp_plr_l0p7_s4_clean",
+        "seed": 4,
+        "metrics": {
+          "acc": 0.9771,
+          "nll": 0.13854367036042334,
+          "ece": 0.07427652180194855,
+          "brier": 0.0442388579249382
+        }
+      }
+    ],
+    "cfg_prototype": {
+      "model_name": "mlp",
+      "plr_enabled": true,
+      "plr_lambda": 0.7,
+      "plr_tau": 0.3,
+      "plr_k": 2,
+      "plr_space": "input",
+      "epochs": 5,
+      "batch_size": 128,
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "val_split": 0.1,
+      "data_dir": "./data"
+    }
+  }
+}
