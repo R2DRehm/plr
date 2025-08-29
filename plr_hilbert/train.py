@@ -36,7 +36,8 @@ def train_one_epoch(model, loader, optimizer, device, plr_cfg: Dict, space: str)
         optimizer.zero_grad(set_to_none=True)
         if space == "feature":
             logits, feat = model(x, return_features=True)
-            Xspace = feat
+            feat_nodrop = feat_before_dropout if dispo, sinon feat
+            Xspace = F.normalize(feat_nodrop.detach(), dim=1)
         else:
             logits = model(x)
             Xspace = x.view(x.size(0), -1).detach()  # distances on input (no grad)
