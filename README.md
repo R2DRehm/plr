@@ -4,6 +4,19 @@ Regularize the **sensitivity of class probabilities in the geometry of the simpl
 
 ---
 
+python scripts/run_mnist_cifar_plr.py --dataset mnist --model mlp \
+  --epochs 40 --batch_size 128 --seeds 0 1 2 --use_cuda \
+  --plr_space input --tau 0.5 --k 2 --warmup 5 --ramp 15 --lam_max 0.3
+
+python scripts/run_mnist_cifar_plr.py --dataset cifar10 --model cnn_small \
+  --epochs 60 --batch_size 128 --seeds 0 1 2 --use_cuda \
+  --plr_space feature --tau 0.4 --k 2 --warmup 10 --ramp 20 --lam_max 0.4
+
+python scripts/run_mnist_cifar_plr.py --dataset cifar100 --model cnn_small \
+  --epochs 80 --batch_size 128 --seeds 0 1 --use_cuda \
+  --plr_space feature --tau 0.45 --k 2 --warmup 10 --ramp 25 --lam_max 0.4
+
+
 ## Contents
 
 - [Motivation](#motivation)
