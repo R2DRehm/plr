@@ -16,6 +16,10 @@ python scripts/run_mnist_cifar_plr.py --dataset cifar100 --model cnn_small \
   --epochs 80 --batch_size 128 --seeds 0 1 --use_cuda \
   --plr_space feature --tau 0.45 --k 2 --warmup 10 --ramp 25 --lam_max 0.4
 
+python scripts/train_synthetic_plr.py --epochs 60 --batch_size 128 --seeds 0 1 2 \
+  --use_cuda --plr_space feature --tau 0.35 --k 2 --warmup 5 --ramp 20 --lam_max 0.4
+
+
 
 ## Contents
 
