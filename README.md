@@ -176,43 +176,6 @@ where \\(R_{\\mathrm{PLR}}(B)\\) is either \\(R_{\\mathrm{PLR}}^{\\mathrm{pairs}
 
 ---
 
-## Repository structure
-
-```
-plr/ 
-├── README.md
-├── requirements.txt
-├── LICENSE
-├── CITATION.cff
-├── configs/
-│   ├── mnist_mlp.yaml
-│   ├── mnist_mlp_plr.yaml
-│   └── cifar10_smallcnn_plr.yaml
-├── plr_hilbert/
-│   ├── __init__.py
-│   ├── train.py                # Entraînement (baseline / +PLR)
-│   ├── eval.py                 # Éval + diagramme de fiabilité
-│   ├── data/
-│   │   └── datasets.py         # MNIST / CIFAR-10 (torchvision)
-│   ├── models/
-│   │   ├── mlp.py              # MLP simple
-│   │   └── cnn_small.py        # Petit CNN pour CIFAR-10
-│   ├── losses/
-│   │   ├── plr.py              # ⚑ Pénalité PLR (Hilbert via range des logits)
-│   │   └── calibration.py      # NLL, Brier, ECE
-│   └── utils/
-│       ├── seed.py             # Seeds + determinisme
-│       ├── knn_pairs.py        # Paires k-NN intra-batch
-│       └── logging_utils.py    # Sauvegarde config/metrics
-├── scripts/
-│   └── run_experiment.sh
-└── tests/
-    ├── test_hilbert_identity.py  # d_H(softmax(z), softmax(z')) == range(z - z')
-    └── test_plr_backward.py      # test grad PLR (autograd)
-```
-
----
-
 ## Installation
 
 ```bash
