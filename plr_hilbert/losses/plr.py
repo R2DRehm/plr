@@ -31,7 +31,8 @@ def plr_loss(logits: torch.Tensor,
     # Hilbert projective distance on softmax outputs equals range of dz
     rng = dz.max(dim=1).values - dz.min(dim=1).values  # [P]
     dx = torch.norm(X_space[i_idx] - X_space[j_idx], dim=1) + eps  # [P]
-    ratios = rng / dx
+    scale = dx.detach().median()         # robuste
+    ratios = rng / (dx / scale)
     over = ratios - tau
     active = over > 0
     if reduction == "sum":
