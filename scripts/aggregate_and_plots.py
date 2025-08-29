@@ -17,6 +17,12 @@ PATTERNS = [
     # CIFAR-100
     "c100_smallcnn_ce_s*_full*",
     "c100_smallcnn_plr_t0p35_s*_full*",
+    
+    # MNIST (tests propres)
+    "mnist_mlp_ce_s*_clean",
+    # accept several PLR naming variants (old: mnist_mlp_plr_sX, new: mnist_mlp_plr_l0p6_sX or mnist_mlp_plr_l0p7_sX)
+    "mnist_mlp_plr_s*_clean",
+    "mnist_mlp_plr_*_clean",
 ]
 
 
