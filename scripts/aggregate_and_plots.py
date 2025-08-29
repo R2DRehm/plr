@@ -150,6 +150,10 @@ for c in metric_cols:
 df = df.dropna(subset=metric_cols).copy()
 
 print("\nSeed-wise:\n", df)
+# -- write seed-wise CSV for convenience
+Path("runs").mkdir(exist_ok=True)
+df.to_csv("runs/summary.csv", index=False)
+df.to_csv("runs/seedwise.csv", index=False)
 
 # --- Agrégation: mean, std, IC95% par (dataset, method)
 def tcrit(n):
@@ -184,6 +188,7 @@ print("\nSummary (mean±std, CI95 in CSV):\n",
 
 # --- Wilcoxon CE vs PLR(t=0.35) par dataset sur seeds communs
 stats_lines = []
+pvals = {}  # stocke p-values par (dataset,metric)
 try:
     from scipy.stats import wilcoxon
     for ds in sorted(df["dataset"].unique()):
@@ -203,12 +208,61 @@ try:
             continue
         pl = sub[sub.method == target].set_index("seed")[metric_cols]
         common = ce.index.intersection(pl.index)
+        # export paired CSV for diagnostics
+        if len(common) > 0:
+            pair_df = pd.DataFrame({
+                'seed': list(common)
+            }).set_index('seed')
+            for col in metric_cols:
+                pair_df[f'ce_{col}'] = ce.loc[common, col]
+                pair_df[f'plr_{col}'] = pl.loc[common, col]
+            pair_path = Path(f"runs/pair_{ds}.csv")
+            pair_df.to_csv(pair_path)
+
         if len(common) < 5:
             stats_lines.append(f"[{ds}] seeds communs insuffisants pour Wilcoxon (n={len(common)}).")
             continue
+
+        # compute Wilcoxon and record p-values
         for col in metric_cols:
             s = wilcoxon(ce.loc[common, col], pl.loc[common, col], alternative="two-sided", zero_method="wilcox")
             stats_lines.append(f"[{ds}] Wilcoxon CE vs {target} on {col}: n={len(common)}, W={s.statistic}, p={s.pvalue:.3e}")
+            pvals[(ds, col)] = s.pvalue
+
+        # ECE-focused visuals: boxplot + paired scatter
+        try:
+            import matplotlib.pyplot as plt
+            ece_pair = pd.DataFrame({
+                'ce': ce.loc[common, 'ece'],
+                'plr': pl.loc[common, 'ece']
+            }).reset_index()
+            # boxplot
+            plt.figure(figsize=(6,4))
+            plt.boxplot([ece_pair['ce'].dropna(), ece_pair['plr'].dropna()], labels=['CE','PLR'])
+            plt.ylabel('ECE')
+            pv = pvals.get((ds,'ece'), None)
+            title = f"{ds.upper()} — ECE CE vs PLR (n={len(common)})"
+            if pv is not None:
+                title += f" — Wilcoxon p={pv:.3e}"
+            plt.title(title)
+            plt.tight_layout()
+            plt.savefig(f"runs/{ds}_ece_box.png", dpi=200)
+            plt.close()
+
+            # paired scatter CE vs PLR
+            plt.figure(figsize=(5,5))
+            plt.scatter(ece_pair['ce'], ece_pair['plr'])
+            maxv = max(ece_pair[['ce','plr']].max().max(), 1e-3)
+            plt.plot([0, maxv],[0, maxv], '--', color='grey')
+            plt.xlabel('ECE CE')
+            plt.ylabel('ECE PLR')
+            plt.title(title)
+            plt.tight_layout()
+            plt.savefig(f"runs/{ds}_ece_paired.png", dpi=200)
+            plt.close()
+        except Exception:
+            # ignore plotting errors
+            pass
 except Exception as e:
     stats_lines.append(f"[info] scipy absent ou indisponible pour Wilcoxon ({e}). Installe: pip install scipy")
 
