@@ -133,11 +133,11 @@ def main():
                     nb += 1
 
                 val_metrics, _, _ = evaluate(model, Xva, yva, device)
-                if val_metrics['nll'] < best_nll:
-                    best_nll = val_metrics['nll']
+                if val_metrics["nll"] < best_nll:
+                    best_nll = val_metrics["nll"]
                     torch.save({'model': model.state_dict()}, best_path)
                 print(f'[{tag}] ep {ep:03d} | CE {tot_ce/max(1,nb):.3f} PLR {tot_plr/max(1,nb):.3f} '
-                      f'Acc {tot_acc/max(1,nb):.3f} | Val NLL {val_metrics['nll']:.3f} ECE {val_metrics['ece']:.3f} | lam {lam:.3f}')
+                      f'Acc {tot_acc/max(1,nb):.3f} | Val NLL {val_metrics["nll"]:.3f} ECE {val_metrics["ece"]:.3f} | lam {lam:.3f}')
 
             if os.path.exists(best_path):
                 state = torch.load(best_path, map_location=device)
